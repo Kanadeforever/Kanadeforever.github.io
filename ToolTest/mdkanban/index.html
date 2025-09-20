@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown看板 预览版</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Markdown看板</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -1019,6 +1019,31 @@
             background: #252526;
         }
 
+        /* 子任务删除按钮样式 */
+        .subtask-delete-btn {
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+            border: none;
+            border-radius: 5px;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+        }
+
+        .subtask-delete-btn:hover {
+            background: rgba(231, 76, 60, 0.2);
+            transform: scale(1.1);
+        }
+
+        .subtask-delete-btn i {
+            font-size: 18px;
+        }
+
         /* 黑暗模式切换按钮 */
         .theme-switch {
             position: fixed;
@@ -1062,7 +1087,7 @@
 
 <body>
     <header>
-        <h1><i class="fas fa-columns"></i> Markdown看板</h1>
+        <h1><i class="ri-layout-column-line"></i> Markdown看板</h1>
         <!-- <p>增强版本地看板应用 - 支持标签、时间戳和子任务</p> -->
     </header>
 
@@ -1082,10 +1107,10 @@
 
     <div class="file-actions">
         <button id="save-file">
-            <i class="fas fa-save"></i> 保存到Markdown文件
+            <i class="ri-save-line"></i> 保存到Markdown文件
         </button>
         <button id="load-file">
-            <i class="fas fa-folder-open"></i> 从Markdown文件加载
+            <i class="ri-folder-open-line"></i> 从Markdown文件加载
         </button>
         <input type="file" id="file-input" accept=".md">
     </div>
@@ -1094,7 +1119,7 @@
     <div class="modal" id="card-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modal-title"><i class="fas fa-edit"></i> 卡片详情</h2>
+                <h2 id="modal-title"><i class="ri-edit-line"></i> 卡片详情</h2>
                 <span class="close">&times;</span>
             </div>
 
@@ -1109,7 +1134,7 @@
                     <div class="subtasks-header">
                         <h3>子任务</h3>
                         <button class="detail-action-btn" id="add-subtask-btn">
-                            <i class="fas fa-plus"></i> 添加子任务
+                            <i class="ri-add-line"></i> 添加子任务
                         </button>
                     </div>
                     <div class="progress-bar">
@@ -1123,13 +1148,13 @@
 
                 <div class="card-detail-actions">
                     <button class="detail-action-btn" id="add-tag-btn">
-                        <i class="fas fa-tag"></i> 添加标签
+                        <i class="ri-price-tag-line"></i> 添加标签
                     </button>
                     <button class="detail-action-btn" id="set-due-date-btn">
-                        <i class="fas fa-clock"></i> 设置到期时间
+                        <i class="ri-time-line"></i> 设置到期时间
                     </button>
                     <button class="detail-action-btn" id="edit-card-btn">
-                        <i class="fas fa-edit"></i> 编辑卡片
+                        <i class="ri-edit-line"></i> 编辑卡片
                     </button>
                 </div>
             </div>
@@ -1137,13 +1162,13 @@
             <div class="edit-mode" id="edit-mode">
                 <div class="format-toolbar">
                     <button class="format-btn" data-prefix="**" data-suffix="**" title="加粗">
-                        <i class="fas fa-bold"></i>
+                        <i class="ri-bold"></i>
                     </button>
                     <button class="format-btn" data-prefix="*" data-suffix="*" title="斜体">
-                        <i class="fas fa-italic"></i>
+                        <i class="ri-italic"></i>
                     </button>
                     <button class="format-btn" data-prefix="`" data-suffix="`" title="代码">
-                        <i class="fas fa-code"></i>
+                        <i class="ri-code-line"></i>
                     </button>
                     <button class="format-btn" data-prefix="# " data-suffix="" title="标题1">
                         H1
@@ -1161,10 +1186,10 @@
 
                 <div class="edit-actions">
                     <button id="save-edit">
-                        <i class="fas fa-check"></i> 保存
+                        <i class="ri-check-line"></i> 保存
                     </button>
                     <button id="cancel-edit">
-                        <i class="fas fa-times"></i> 取消
+                        <i class="ri-close-line"></i> 取消
                     </button>
                 </div>
             </div>
@@ -1175,7 +1200,7 @@
     <div class="modal" id="tag-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2><i class="fas fa-tag"></i> 选择标签</h2>
+                <h2><i class="ri-price-tag-line"></i> 选择标签</h2>
                 <span class="close" id="close-tag-modal">&times;</span>
             </div>
 
@@ -1695,7 +1720,7 @@
 
                     const deleteBtn = document.createElement('button');
                     deleteBtn.className = 'delete-column';
-                    deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                    deleteBtn.innerHTML = '<i class="ri-delete-bin-line"></i>';
                     deleteBtn.addEventListener('click', () => {
                         showConfirmation('确定要删除这一列吗？', () => {
                             kanbanData.splice(columnIndex, 1);
@@ -1747,18 +1772,18 @@
                         cardActions.className = 'card-actions';
 
                         const editBtn = document.createElement('button');
-                        editBtn.innerHTML = '<i class="fas fa-edit"></i>';
+                        editBtn.innerHTML = '<i class="ri-edit-line"></i>';
                         editBtn.title = '编辑';
                         editBtn.addEventListener('click', () => {
                             openCardDetail(columnIndex, cardIndex);
                         });
 
                         const deleteCardBtn = document.createElement('button');
-                        deleteCardBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                        deleteCardBtn.innerHTML = '<i class="ri-delete-bin-line"></i>';
                         deleteCardBtn.title = '删除';
                         deleteCardBtn.addEventListener('click', () => {
-                            const currentCardIndex = cardIndex; // 创建局部变量
-                            const currentColumnIndex = columnIndex; // 创建局部变量
+                            const currentCardIndex = cardIndex;
+                            const currentColumnIndex = columnIndex;
                             showConfirmation('确定要删除这张卡片吗？', () => {
                                 kanbanData[currentColumnIndex].cards.splice(currentCardIndex, 1);
                                 saveData();
@@ -1817,7 +1842,7 @@
                             const completedCount = card.subtasks.filter(st => st.completed).length;
                             const subtaskStatus = document.createElement('div');
                             subtaskStatus.className = 'subtask-status';
-                            subtaskStatus.innerHTML = `<i class="fas fa-tasks"></i> ${completedCount}/${card.subtasks.length} 完成`;
+                            subtaskStatus.innerHTML = `<i class="ri-task-line"></i> ${completedCount}/${card.subtasks.length} 完成`;
                             cardElement.appendChild(subtaskStatus);
                         }
 
@@ -1943,7 +1968,7 @@
                     // 添加卡片按钮
                     const addCardBtn = document.createElement('button');
                     addCardBtn.className = 'add-card-btn';
-                    addCardBtn.innerHTML = '<i class="fas fa-plus"></i> 添加卡片';
+                    addCardBtn.innerHTML = '<i class="ri-add-line"></i> 添加卡片';
                     addCardBtn.addEventListener('click', () => {
                         addCardBtn.style.display = 'none';
                         addCardForm.style.display = 'block';
@@ -2122,7 +2147,7 @@
 
                 const addColumnBtn = document.createElement('button');
                 addColumnBtn.id = 'add-column-btn';
-                addColumnBtn.innerHTML = '<i class="fas fa-plus"></i> 添加列';
+                addColumnBtn.innerHTML = '<i class="ri-add-line"></i> 添加列';
                 addColumnBtn.addEventListener('click', async () => {
                     const title = await showInputModal('请输入列标题', '');
                     if (title) {
@@ -2188,7 +2213,7 @@
                 document.getElementById('edit-mode').style.display = 'none';
 
                 // 更新模态框标题
-                document.getElementById('modal-title').innerHTML = '<i class="fas fa-info-circle"></i> 卡片详情';
+                document.getElementById('modal-title').innerHTML = '<i class="ri-information-line"></i> 卡片详情';
 
                 // 显示模态框
                 document.getElementById('card-modal').style.display = 'flex';
@@ -2236,9 +2261,9 @@
 
                     if (dueDate < now) {
                         dueDateContainer.classList.add('overdue');
-                        dueDateContainer.innerHTML = `<i class="fas fa-exclamation-circle"></i> 已过期: ${formatDate(dueDate)}`;
+                        dueDateContainer.innerHTML = `<i class="ri-error-warning-line"></i> 已过期: ${formatDate(dueDate)}`;
                     } else {
-                        dueDateContainer.innerHTML = `<i class="fas fa-clock"></i> 到期: ${formatDate(dueDate)}`;
+                        dueDateContainer.innerHTML = `<i class="ri-time-line"></i> 到期: ${formatDate(dueDate)}`;
                     }
                 }
             }
@@ -2291,7 +2316,7 @@
                         actions.className = 'subtask-actions';
 
                         const deleteBtn = document.createElement('button');
-                        deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                        deleteBtn.innerHTML = '<i class="ri-delete-bin-line"></i>';
                         deleteBtn.addEventListener('click', () => {
                             currentCard.subtasks.splice(index, 1);
                             saveData();
@@ -2342,28 +2367,52 @@
             }
 
             // ==================== 黑暗模式功能 ====================
+            // 黑暗模式切换按钮
             const themeSwitchBtn = document.getElementById('theme-switch');
-            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: light)');
-
-            // 检查本地存储或系统偏好
-            const currentTheme = localStorage.getItem('theme');
-            if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
-                document.body.classList.add('dark-mode');
-                themeSwitchBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            // 初始化图标
+            if (document.body.classList.contains('dark-mode')) {
+                // 替换为 Remix Icon
+                themeSwitchBtn.innerHTML = '<i class="ri-sun-line"></i>';
+            } else {
+                // 替换为 Remix Icon
+                themeSwitchBtn.innerHTML = '<i class="ri-moon-line"></i>';
             }
 
-            // 切换主题
+            // 切换主题时的图标更新
             themeSwitchBtn.addEventListener('click', () => {
                 document.body.classList.toggle('dark-mode');
                 const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
                 localStorage.setItem('theme', theme);
 
                 if (theme === 'dark') {
-                    themeSwitchBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                    themeSwitchBtn.innerHTML = '<i class="ri-sun-line"></i>';
                 } else {
-                    themeSwitchBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                    themeSwitchBtn.innerHTML = '<i class="ri-moon-line"></i>';
                 }
             });
+
+            // const themeSwitchBtn = document.getElementById('theme-switch');
+            // const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: light)');
+
+            // // 检查本地存储或系统偏好
+            // const currentTheme = localStorage.getItem('theme');
+            // if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+            //     document.body.classList.add('dark-mode');
+            //     themeSwitchBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            // }
+
+            // // 切换主题
+            // themeSwitchBtn.addEventListener('click', () => {
+            //     document.body.classList.toggle('dark-mode');
+            //     const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            //     localStorage.setItem('theme', theme);
+
+            //     if (theme === 'dark') {
+            //         themeSwitchBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            //     } else {
+            //         themeSwitchBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            //     }
+            // });
 
             // ==================== 模态框功能 ====================
             const modal = document.getElementById('card-modal');
@@ -2381,7 +2430,7 @@
                 document.getElementById('card-detail-view').style.display = 'none';
                 document.getElementById('edit-mode').style.display = 'block';
 
-                document.getElementById('modal-title').innerHTML = '<i class="fas fa-edit"></i> 编辑卡片';
+                document.getElementById('modal-title').innerHTML = '<i class="ri-edit-line"></i> 编辑卡片';
                 document.getElementById('card-content-text').value = currentCard.content;
                 updateMarkdownPreview();
             });
