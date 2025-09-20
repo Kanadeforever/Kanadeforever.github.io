@@ -25,6 +25,7 @@
 大D老师则在我一句话下就做出了原型，于是决定正儿八经开始搞，完成了以后多半要么搭配自制前端，要么搭配Electron打包成本地应用，也算完成了我一个小心愿。
 
 - [Simple Kanban](ToolTest/simplekanban/index.html)的超绝进化版，是被D老师震惊后认真起来搞的产物；
+- 最初版的图标是使用[Font Awesome 6](https://fontawesome.com/versions)，现在以迁移到了[Remix icon](https://remixicon.com/)上，虽然没以前那么好看但这套图标也是开源的；
 - 目前支持markdown明文储存和相对进阶的看板功能；
 - 导出的数据可直接在各种支持markdown的编辑器/查看器中阅览，其中本项目使用的各种专有参数储存在文件末尾。
 - 专有数据计划在1.0发行版以后进行迭代，最终希望包括专有数据在内都可以被markdown编辑器支持，做到即使本工具坏了也不会丢失数据。
