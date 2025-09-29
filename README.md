@@ -32,3 +32,32 @@
 - 已经可以用于日常使用和生产阶段
 - 有些体验上的小BUG正在解决
 - EA版，细节待打磨。
+
+## [CusBro](https://github.com/Kanadeforever/CusBro)
+
+- 多此一举的本地webui应用的浏览器；
+  - 作用是在你想打开这个应用但又不想打开浏览器的时候，让你用它；
+  - 可以给nas控制台、nas的各种web端应用做显示窗口；
+  - docker程序，又或者像syncthing单独启动这样的情况下，webui的显示窗口；
+- 功臣依然是大D老师，新的功臣是Electron和nodejs。
+- 依然是bug比较多的状态，需要修改所以目前是预览版
+- "it just works!"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----
+
+by Luminous 2025
